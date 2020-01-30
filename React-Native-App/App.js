@@ -16,10 +16,7 @@ export default class App extends Component {
         >
           <Header />
           <Route exact path="/" component={Home} />
-          <Route exact path="/scenario/custom" component={NewScenario} />
-          {/* <TempHome path="/" />
-            <NewScenario path="/scenario/custom" />
-          </Route> */}
+          <Route exact path="/scenario/new" component={NewScenario} />
         </View>
       </NativeRouter>
     );

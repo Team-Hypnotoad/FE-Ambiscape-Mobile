@@ -15,11 +15,17 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-web": "~0.11.7",
-    "react-router-native": "^5.1.2"
+    "react-router-native": "^5.1.2",
+    "expo-font": "~8.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
     "@babel/core": "^7.0.0"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "private": true
 }
