@@ -1,39 +1,71 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, Picker } from "react-native";
+import React, { Component } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Picker,
+  TouchableOpacity,
+  Button
+} from "react-native";
 import { Link } from "react-router-native";
-import { Dropdown } from "react-native-material-dropdown";
+import { Overlay } from "react-native-elements";
 
-export default function Header({ title }) {
-  let data = [
-    { value: "scenarios" },
-    { value: "my scenarios" },
-    { value: "settings" }
-  ];
-  return (
-    <View style={styles.headerBox}>
-      <Link to="/">
-        <Image source={require("../icons8-frog-96.png")}></Image>
-      </Link>
-      <Dropdown
-        style={{ marginRight: 150 }}
-        // dropdownOffset={{ top: 60, right: 0 }}
-        dropdownPosition={0}
-        label="⎈"
-        data={data}
-      >
-        <Image
-          style={styles.hamburgerImage}
-          source={require("../icons8-menu-48.png")}
-        ></Image>
-      </Dropdown>
-    </View>
-  );
+export default class Header extends Component {
+  state = {
+    isVisible: false
+  };
+
+  render() {
+    return (
+      <View style={styles.headerBox}>
+        <Link to="/">
+          <Image source={require("../icons8-frog-96.png")}></Image>
+        </Link>
+        <TouchableOpacity onPress={this.handlePress}>
+          <Image source={require("../icons8-menu-48.png")}></Image>
+        </TouchableOpacity>
+        <Overlay
+          isVisible={this.state.isVisible}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+          // windowBackgroundColor="rgba(255, 255, 255, .5)"
+          width="40%"
+          height="auto"
+          overlayBackgroundColor="#30322F"
+          style={styles.overlayBox}
+        >
+          <View style={styles.settingsMenuBox}>
+            <TouchableOpacity style={styles.settingsMenuSingleBoxTop}>
+              <Text style={styles.settingsMenuText}>settings</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.settingsMenuSingleBox}>
+              <Text style={styles.settingsMenuText}>option 2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.settingsMenuSingleBox}>
+              <Text style={styles.settingsMenuText}>option 3</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.settingsMenuSingleBox}>
+              <Text style={styles.settingsMenuText}>Log out</Text>
+            </TouchableOpacity>
+          </View>
+        </Overlay>
+      </View>
+    );
+  }
+
+  handlePress = back => {
+    const { isVisible } = this.state;
+    if (back === "close") {
+      this.setState({ isVisible: false });
+    }
+    this.setState({ isVisible: true });
+  };
 }
 
 const styles = StyleSheet.create({
   headerBox: {
     height: 90,
-    backgroundColor: "green",
+    backgroundColor: "#30322F",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between"
@@ -42,5 +74,28 @@ const styles = StyleSheet.create({
   hamburgerImage: {
     marginTop: 10,
     marginRight: 10
+  },
+  settingsMenuBox: {
+    backgroundColor: "#30322F"
+  },
+  settingsMenuSingleBoxTop: {
+    justifyContent: "center",
+    // width: "100%",
+    borderColor: "white",
+    borderBottomWidth: 3,
+    borderTopWidth: 3,
+    height: 70
+  },
+  settingsMenuText: {
+    fontSize: 30,
+    alignSelf: "center",
+    color: "white"
+  },
+  settingsMenuSingleBox: {
+    justifyContent: "center",
+    // width: "100%",
+    borderColor: "white",
+    borderBottomWidth: 3,
+    height: 70
   }
 });

@@ -5,7 +5,8 @@ import CustomScenarioPage from "./CustomScenarioPage";
 
 export default class Home extends Component {
   state = {
-    selectedLink: "presets"
+    selectedLink: "presets",
+    isVisible: false
   };
 
   render() {

@@ -12,7 +12,7 @@ import {
   TouchableOpacity
 } from "react-native";
 
-export default class NewScenario extends Component {
+export default class PickerMenu extends Component {
   state = {
     volume: 0.5,
     frequency: 25000,
