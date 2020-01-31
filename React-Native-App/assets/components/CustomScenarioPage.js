@@ -32,8 +32,16 @@ export default class CustomScenarioCard extends Component {
           {scenarios.map(scenario => {
             return <ScenarioCards scenario={scenario} />;
           })}
-          <Link to="/scenario/new">
-            <View style={styles.addASoundCardSingleBox}>
+          <Link
+            to={{
+              pathname: "/scenario/new",
+              state: { scenario_id: "italianbirds" }
+            }}
+          >
+            <View
+              scenario_id={"italianbirds"}
+              style={styles.addASoundCardSingleBox}
+            >
               <Text style={styles.addASoundsCardText}>add that sound!!!</Text>
             </View>
           </Link>

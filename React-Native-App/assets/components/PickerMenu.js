@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Audio } from "expo-av";
-import { audioData } from "../audio/sounds-index";
+import { audioData } from "../audio/bg-index";
 import { Header } from "./Header";
 
 import {
