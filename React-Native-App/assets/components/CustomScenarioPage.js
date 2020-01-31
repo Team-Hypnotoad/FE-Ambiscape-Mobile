@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Link } from "react-router-native";
 import ScenarioCards from "./ScenarioCards";
+import IsLoading from "./IsLoading";
 
 export default class CustomScenarioCard extends Component {
   state = {
@@ -21,11 +22,19 @@ export default class CustomScenarioCard extends Component {
         scenarioSlug: "Land mass",
         image: require("../image/IMG_7115.jpeg")
       }
-    ]
+    ],
+    isLoading: false
   };
 
   render() {
-    const { scenarios } = this.state;
+    const { scenarios, isLoading } = this.state;
+    if (isLoading) {
+      return (
+        <View style={styles.scrollViewBox}>
+          <IsLoading />
+        </View>
+      );
+    }
     return (
       <ScrollView style={styles.scrollViewBox}>
         <View style={styles.presetsCardBox}>
@@ -53,7 +62,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#660000",
     height: "100%",
     width: "100%",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    justifyContent: "space-around"
   },
   addASoundCardSingleBox: {
     borderRadius: 20,
