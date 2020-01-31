@@ -29,15 +29,12 @@ export const loadAllHowls = channels => {
 export const playHowl = (url, vol, pan) => {
   const thisHowl = allHowls[url];
   if (vol) {
-    thisHowl.setStatusAsync();
-  }
-  // if (pan) {
-  //   thisHowl.stereo(pan);
-  // }
-  if (allHowls[url]) {
-    console.log(`Playing ${url}`);
     thisHowl.playAsync();
   }
+  // if (allHowls[url]) {
+  //   console.log(`Playing ${url}`);
+  //   thisHowl.playAsync();
+  // }
 };
 
 export const stopHowl = url => {
@@ -46,11 +43,12 @@ export const stopHowl = url => {
   }
 };
 
-// export const changeVolumeOfHowl = (url, volume) => {
-//   if (allHowls[url]) {
-//     allHowls[url].volume(volume);
-//   }
-// };
+export const changeVolumeOfHowl = (url, volume) => {
+  console.log(volume);
+  if (allHowls[url]) {
+    allHowls[url].setStatusAsync({ volume: volume });
+  }
+};
 
 // export const changePanOfHowl = (url, pan) => {
 //   const thisPan = parseFloat(pan);
@@ -102,5 +100,5 @@ export const loop = (slug, playNext) => {
 // };
 
 // export const unmuteAll = () => {
-//   Howler.volume(1);
+//   Audio.volume(1);
 // };

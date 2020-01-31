@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Slider } from "react-native";
+import { View, Text, Slider, Button } from "react-native";
 
 export default class ChannelCard extends Component {
   state = {
@@ -103,15 +103,104 @@ export default class ChannelCard extends Component {
     //   }
     // }
   }
+  handleChangeVolume = (itemValue, itemIndex) => {
+    const { changeVolume } = this.props;
+    const { slug } = this.state;
+    this.setState({ volume: itemValue });
+    changeVolume(slug, itemValue);
+  };
+
+  //  handleChangePan = event => {
+  //    const { value } = event.target;
+  //    const { changePan } = this.props;
+  //    const { slug } = this.state;
+  //    this.setState({ pan: value });
+  //    changePan(slug, value);
+  //  };
+
+  handleChangeFrequency = (itemValue, itemIndex) => {
+    const { changeFrequency } = this.props;
+    const { slug } = this.state;
+    this.setState({ frequency: itemValue });
+    changeFrequency(slug, itemValue);
+  };
+
+  handleToggleHighlight = () => {
+    const { slug } = this.state;
+    const { toggleHighlight } = this.props;
+    toggleHighlight(slug);
+  };
+
+  handleToggleMute = () => {};
+
+  handleToggleSolo = () => {};
 
   render() {
-    const { name, id, slug, type, loop, sprite } = this.state;
+    const {
+      name,
+      id,
+      slug,
+      type,
+      loop,
+      sprite,
+      volume,
+      frequency
+    } = this.state;
     const { isHighlighted, highlightChannel } = this.props;
-    return (
-      <View>
-        {isHighlighted && <Text>Volume</Text>}
-        <Slider style={{ width: "60%" }} />
-      </View>
-    );
+    const renderChannelVolume = () => {
+      return (
+        <View>
+          {isHighlighted && <Text>Volume</Text>}
+          <Slider
+            value={this.state.volume}
+            onValueChange={(itemValue, itemIndex) =>
+              this.handleChangeVolume(itemValue, itemIndex)
+            }
+            style={{ width: "60%" }}
+          />
+        </View>
+      );
+    };
+    const renderChannelButtons = () => {
+      return (
+        <>
+          <Button title="M" onPress={this.handleToggleMute}></Button>
+          <Button title="S" onPress={this.handleToggleSolo}></Button>
+        </>
+      );
+    };
+    const renderChannelFrequency = () => {
+      return (
+        <>
+          <Text>Frequency</Text>
+          <Slider
+            value={this.state.frequency}
+            onValueChange={(itemValue, itemIndex) => {
+              this.handleChangeFrequency(itemValue, itemIndex);
+            }}
+            style={{ width: "60%" }}
+          />
+        </>
+      );
+    };
+    if (isHighlighted) {
+      return (
+        <View key={id}>
+          <Text>{name}</Text>
+          {renderChannelButtons()}
+          {renderChannelVolume()}
+          {type === "random" && renderChannelFrequency()}
+          <Button title="^" onPress={this.handleToggleHighlight}></Button>
+        </View>
+      );
+    } else {
+      return (
+        <View key={id}>
+          <Text>{name}</Text>
+          {renderChannelVolume()}
+          <Button title="⌄" onPress={this.handleToggleHighlight}></Button>
+        </View>
+      );
+    }
   }
 }

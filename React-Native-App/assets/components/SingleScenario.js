@@ -25,7 +25,7 @@ export default class SingleScenario extends Component {
     console.log(`Starting scenario: ${name}`);
     if (!playing) {
       this.setState({ playing: true });
-      engine.unmuteAll();
+      // engine.unmuteAll();
       engine.playBackgroundHowls(channels);
       const randomChannels = channels.filter(channel => {
         return channel.type === "random";
@@ -34,7 +34,7 @@ export default class SingleScenario extends Component {
         const { slug } = channel;
         const { playQueue } = channel;
         // engine.randomSoundSpawner(playerFunction, slug, playing);
-        engine.startRandomHowls();
+        // engine.startRandomHowls();
         engine.loop(slug, this.playNextRandomSound, playing);
       });
     }
@@ -123,7 +123,7 @@ export default class SingleScenario extends Component {
     // console.log(channels);
     return (
       <View>
-        <Transport />
+        <Transport startScenario={this.startScenario} />
         <ChannelList
           channels={channels}
           playing={playing}
@@ -174,7 +174,7 @@ export default class SingleScenario extends Component {
       likes: likes,
       channels: newChannels
     });
-    // engine.loadAllHowls(newChannels);
+    engine.loadAllHowls(newChannels);
   }
 
   componentDidUpdate() {}
