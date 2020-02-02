@@ -17,7 +17,7 @@ const ChannelList = ({
 }) => {
   const renderChannelCard = sound => {
     return (
-      <>
+      <ScrollView>
         <ChannelCard
           key={sound.id}
           sound={sound}
@@ -35,7 +35,7 @@ const ChannelList = ({
           playing={playing}
           playNextRandomSound={playNextRandomSound}
         />
-      </>
+      </ScrollView>
     );
   };
 

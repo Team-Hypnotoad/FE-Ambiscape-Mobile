@@ -10,10 +10,10 @@ const createHowl = (channel, url) => {
   const filePath = audioData[type][slug][url];
   const thisHowl = new Audio.Sound();
   thisHowl.loadAsync(filePath, {
-    isLooping: true,
     shouldPlay: false,
-    volume: 1
+    isLooping: loop
   });
+
   allHowls[url] = thisHowl;
 };
 
@@ -28,8 +28,12 @@ export const loadAllHowls = channels => {
 
 export const playHowl = (url, vol, pan) => {
   const thisHowl = allHowls[url];
+  console.log(url);
   if (vol) {
-    thisHowl.playAsync();
+    thisHowl.setStatusAsync({
+      shouldPlay: true,
+      volume: vol
+    });
   }
   // if (allHowls[url]) {
   //   console.log(`Playing ${url}`);
@@ -44,7 +48,6 @@ export const stopHowl = url => {
 };
 
 export const changeVolumeOfHowl = (url, volume) => {
-  console.log(volume);
   if (allHowls[url]) {
     allHowls[url].setStatusAsync({ volume: volume });
   }
@@ -62,10 +65,10 @@ export const playBackgroundHowls = channels => {
     console.log("ERROR = No sounds loaded");
   } else {
     channels.forEach(channel => {
-      const { type, urls } = channel;
+      const { type, urls, volume } = channel;
       const thisURL = urls[0];
       if (type === "background") {
-        playHowl(thisURL);
+        playHowl(thisURL, volume);
       }
     });
   }

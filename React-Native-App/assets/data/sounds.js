@@ -71,9 +71,9 @@ const sounds = [
       "chaffinch1",
       "chaffinch2",
       "chaffinch3",
-      "chaffinch 4",
-      "chaffinch 5",
-      "chaffinch 6"
+      "chaffinch4",
+      "chaffinch5",
+      "chaffinch6"
     ]
   },
   {

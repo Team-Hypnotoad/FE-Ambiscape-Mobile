@@ -8,7 +8,7 @@ import chaffinch6 from "./Chaffinch6.m4a";
 const chaffinchData = {
   chaffinch1: chaffinch1,
   chaffinch2: chaffinch2,
-  // chaffinch3: chaffinch3,
+  chaffinch3: chaffinch3,
   chaffinch4: chaffinch4,
   chaffinch5: chaffinch5,
   chaffinch6: chaffinch6
