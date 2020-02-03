@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, ScrollView, StyleSheet, ImageBackground } from "react-native";
 import Transport from "./Transport";
 import ChannelList from "./ChannelList";
 import * as engine from "../utils/audio-engine";
@@ -24,21 +24,25 @@ export default class SingleScenario extends Component {
     const { playing, name, channels } = this.state;
     console.log(`Starting scenario: ${name}`);
     // if (!playing) {
-      this.setState({ playing: true });
-      // engine.unmuteAll();
-      engine.playBackgroundHowls(channels);
-      const randomChannels = channels.filter(channel => {
-        return channel.type === "random";
-      });
-      randomChannels.forEach(channel => {
-        const { slug } = channel;
-        const { playQueue } = channel;
-        // engine.randomSoundSpawner(playerFunction, slug, playing);
-        // engine.startRandomHowls();
-        engine.loop(slug, this.playNextRandomSound, playing);
-      });
+    this.setState({ playing: true });
+    // engine.unmuteAll();
+    engine.playBackgroundHowls(channels);
+    const randomChannels = channels.filter(channel => {
+      return channel.type === "random";
+    });
+    randomChannels.forEach(channel => {
+      const { slug } = channel;
+      const { playQueue } = channel;
+      // engine.randomSoundSpawner(playerFunction, slug, playing);
+      // engine.startRandomHowls();
+      engine.loop(slug, this.playNextRandomSound, playing);
+    });
     // }
   };
+
+  componentWillUnmount() {
+    this.stopScenario();
+  }
 
   stopScenario = () => {
     const { playing } = this.state;
@@ -123,21 +127,44 @@ export default class SingleScenario extends Component {
     // console.log(channels);
     return (
       <View>
-        <Transport
-          startScenario={this.startScenario}
-          stopScenario={this.stopScenario}
-        />
-        <ChannelList
-          channels={channels}
-          playing={playing}
-          toggleHighlightedChannel={this.toggleHighlightedChannel}
-          toggleSoloChannel={this.toggleSoloChannel}
-          highlightedChannel={highlightedChannel}
-          soloChannel={soloChannel}
-          changeVolume={this.changeVolume}
-          changeFrequency={this.changeFrequency}
-          playNextRandomSound={this.playNextRandomSound}
-        />
+        <ScrollView alwaysBounceVertical={false} alwaysBounceHorizontal={false}>
+          <View style={styles.contentContainer}>
+            <ImageBackground
+              resizeMode="cover"
+              source={{
+                uri:
+                  "https://www.freevector.com/uploads/vector/preview/19162/Free_Forest_Background_Vector.jpg"
+              }}
+              style={{
+                height: "100%",
+                width: "100%",
+                // position: "relative",
+                top: 0,
+                left: 0,
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <ChannelList
+                channels={channels}
+                playing={playing}
+                toggleHighlightedChannel={this.toggleHighlightedChannel}
+                toggleSoloChannel={this.toggleSoloChannel}
+                highlightedChannel={highlightedChannel}
+                soloChannel={soloChannel}
+                changeVolume={this.changeVolume}
+                changeFrequency={this.changeFrequency}
+                playNextRandomSound={this.playNextRandomSound}
+              />
+            </ImageBackground>
+          </View>
+        </ScrollView>
+        <View style={styles.contentContainer}>
+          <Transport
+            stopScenario={this.stopScenario}
+            startScenario={this.startScenario}
+          />
+        </View>
       </View>
     );
   }
@@ -182,3 +209,18 @@ export default class SingleScenario extends Component {
 
   componentDidUpdate() {}
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    marginTop: 50,
+    marginBottom: 60,
+    alignItems: "center"
+  },
+  transportStyle: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 100
+  }
+});

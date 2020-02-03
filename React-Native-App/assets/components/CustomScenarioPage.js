@@ -30,7 +30,7 @@ export default class CustomScenarioCard extends Component {
       <ScrollView style={styles.scrollViewBox}>
         <View style={styles.presetsCardBox}>
           {scenarios.map(scenario => {
-            return <ScenarioCards scenario={scenario} />;
+            return <ScenarioCards scenario={scenario} key={scenario.creator_id} />;
           })}
           <Link
             to={{
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#660000",
     height: "100%",
     width: "100%",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   addASoundCardSingleBox: {
     borderRadius: 20,

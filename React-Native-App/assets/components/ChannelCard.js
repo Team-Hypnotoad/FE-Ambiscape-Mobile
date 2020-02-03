@@ -149,14 +149,22 @@ export default class ChannelCard extends Component {
     const { isHighlighted, highlightChannel } = this.props;
     const renderChannelVolume = () => {
       return (
-        <View>
-          {isHighlighted && <Text>Volume</Text>}
+        <View
+          style={{
+            marginBottom: 20
+          }}
+        >
+          {isHighlighted && <Text style={{ color: "white" }}>Volume</Text>}
           <Slider
+            minimumTrackTintColor="green"
             value={this.state.volume}
+            step={0.1}
             onValueChange={(itemValue, itemIndex) =>
               this.handleChangeVolume(itemValue, itemIndex)
             }
-            style={{ width: "60%" }}
+            style={{
+              width: "100%"
+            }}
           />
         </View>
       );
@@ -172,13 +180,17 @@ export default class ChannelCard extends Component {
     const renderChannelFrequency = () => {
       return (
         <>
-          <Text>Frequency</Text>
+          <Text style={{ color: "white" }}>Frequency</Text>
           <Slider
+            minimumTrackTintColor="green"
             value={this.state.frequency}
+            step={0.1}
             onValueChange={(itemValue, itemIndex) => {
               this.handleChangeFrequency(itemValue, itemIndex);
             }}
-            style={{ width: "60%" }}
+            style={{
+              width: "140%"
+            }}
           />
         </>
       );
@@ -186,7 +198,7 @@ export default class ChannelCard extends Component {
     if (isHighlighted) {
       return (
         <View key={id}>
-          <Text>{name}</Text>
+          <Text style={{ color: "white" }}>{name}</Text>
           {renderChannelButtons()}
           {renderChannelVolume()}
           {type === "random" && renderChannelFrequency()}
@@ -196,9 +208,11 @@ export default class ChannelCard extends Component {
     } else {
       return (
         <View key={id}>
-          <Text>{name}</Text>
+          <Text style={{ color: "white" }}>{name}</Text>
           {renderChannelVolume()}
-          <Button title="⌄" onPress={this.handleToggleHighlight}></Button>
+          <Button 
+  
+          title="⌄" onPress={this.handleToggleHighlight}></Button>
         </View>
       );
     }

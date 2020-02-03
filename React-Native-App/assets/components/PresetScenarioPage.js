@@ -33,7 +33,9 @@ export default class PresetScenarioCard extends Component {
       <ScrollView style={styles.scrollViewBox}>
         <View style={styles.presetsCardBox}>
           {scenarios.map(scenario => {
-            return <ScenarioCards scenario={scenario} />;
+            return (
+              <ScenarioCards scenario={scenario} key={scenario.creator_id} />
+            );
           })}
         </View>
       </ScrollView>

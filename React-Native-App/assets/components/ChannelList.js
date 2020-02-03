@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { List, ListItem } from "react-native-elements";
 import ChannelCard from "./ChannelCard";
 
@@ -17,7 +17,7 @@ const ChannelList = ({
 }) => {
   const renderChannelCard = sound => {
     return (
-      <ScrollView>
+      <View style={styles.container}>
         <ChannelCard
           key={sound.id}
           sound={sound}
@@ -35,30 +35,30 @@ const ChannelList = ({
           playing={playing}
           playNextRandomSound={playNextRandomSound}
         />
-      </ScrollView>
+      </View>
     );
   };
 
   if (channels.length > 0) {
     return (
-      <ScrollView containerStyle={{ margin: 10 }}>
-        <View key="bgSounds">
-          <Text>Background Sounds</Text>
+      <View>
+        <View key="bgSounds" style={styles.itemsBg}>
+          <Text style={{ color: "white" }}>Background Sounds</Text>
           {channels.map(sound => {
             if (sound.type === "background") {
               return renderChannelCard(sound);
             }
           })}
         </View>
-        <View key="RandomSound">
-          <Text>Random Sounds</Text>
+        <View key="RandomSound" style={styles.itemsRandom}>
+          <Text style={{ color: "white" }}>Random Sounds</Text>
           {channels.map(sound => {
             if (sound.type === "random") {
               return renderChannelCard(sound);
             }
           })}
         </View>
-      </ScrollView>
+      </View>
     );
   } else {
     return (
@@ -68,4 +68,31 @@ const ChannelList = ({
     );
   }
 };
+
+const styles = StyleSheet.create({
+  // contentContainer: {
+  //   paddingVertical: 20
+  // },
+  itemsBg: {
+    marginTop: 120,
+    marginRight: 20,
+    marginBottom: 20,
+    width: 250
+  },
+  itemsRandom: {
+    marginTop: 40,
+    marginRight: 20,
+    marginBottom: 20,
+    width: 250
+  },
+  container: {
+    color: "white",
+    backgroundColor: "black",
+    opacity: 0.8,
+    borderColor: "black",
+    borderWidth: 0.5,
+    borderRadius: 8,
+    marginTop: 20
+  }
+});
 export default ChannelList;

@@ -68,8 +68,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#30322F",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
-    // position: "fixed"
+    justifyContent: "space-between",
+    position: "absolute",
+    top:0,
+    right:0,
+    left:0,
+    zIndex:100
   },
   hamburgerImage: {
     marginTop: 10,

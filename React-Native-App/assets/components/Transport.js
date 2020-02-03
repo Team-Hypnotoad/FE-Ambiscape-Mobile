@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Button } from "react-native";
+import { View, TouchableOpacity, Button, StyleSheet, Text } from "react-native";
 
 const styling = {
   // border: "1px solid",
@@ -16,11 +16,41 @@ const Transport = ({ startScenario, stopScenario }) => {
   };
 
   return (
-    <View>
-      <Button title="play" onPress={handleStart}></Button>
-      <Button title="Stop" onPress={handleStop}></Button>
+    <View style={styles.transportStyle}>
+      <TouchableOpacity onPress={handleStart}>
+        <Text style={styles.TouchableOpacity}>▷</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleStop}>
+        <Text style={styles.TouchableOpacity2}>□</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  transportStyle: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 70,
+    marginBottom: 40,
+    backgroundColor: "grey",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center"
+  },
+  TouchableOpacity: {
+    fontSize: 50
+    // alignSelf: "center"
+    // justifyContent: "center"
+  },
+  TouchableOpacity2: {
+    fontSize: 50
+    // alignSelf: "center"
+    // justifyContent: "center"
+  }
+});
 
 export default Transport;

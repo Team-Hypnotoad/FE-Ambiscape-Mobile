@@ -49,6 +49,7 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   navBarLinks: {
+    marginTop: 90,
     flexDirection: "row",
     height: 40,
     width: "100%",
