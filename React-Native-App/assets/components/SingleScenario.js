@@ -53,9 +53,7 @@ export default class SingleScenario extends Component {
       const { slug, type } = channel;
       if (type === "background") {
         engine.stopHowl(slug);
-      } else if (type === "random") {
-        engine.stopHowl(slug);
-      }
+      } 
     });
     engine.stopRandomHowls();
     engine.muteAll();

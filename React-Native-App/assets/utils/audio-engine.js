@@ -27,8 +27,7 @@ export const loadAllHowls = channels => {
 
 export const playHowl = (url, vol) => {
   const thisHowl = allHowls[url];
-  console.log(url);
-  if (vol > 0) {
+  if (allHowls[url]) {
     thisHowl.setStatusAsync({
       shouldPlay: true,
       volume: vol
