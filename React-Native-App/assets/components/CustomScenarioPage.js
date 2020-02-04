@@ -11,38 +11,18 @@ import { Link } from "react-router-native";
 import ScenarioCards from "./ScenarioCards";
 
 export default class CustomScenarioCard extends Component {
-  state = {
-    scenarios: [
-      {
-        scenarioSlug: "Beach",
-        image: require("../image/SFC09791.jpg")
-      },
-      {
-        scenarioSlug: "Land mass",
-        image: require("../image/IMG_7115.jpeg")
-      }
-    ]
-  };
-
   render() {
-    const { scenarios } = this.state;
     return (
       <ScrollView style={styles.scrollViewBox}>
-        <View style={styles.presetsCardBox}>
-          {scenarios.map(scenario => {
-            return <ScenarioCards scenario={scenario} key={scenario.creator_id} />;
-          })}
+        <View>
           <Link
             to={{
               pathname: "/scenario/new",
-              state: { scenario_id: "italianbirds" }
+              state: { scenario_id: "forest" }
             }}
           >
-            <View
-              scenario_id={"italianbirds"}
-              style={styles.addASoundCardSingleBox}
-            >
-              <Text style={styles.addASoundsCardText}>add that sound!!!</Text>
+            <View scenario_id="forest" style={styles.addASoundCardSingleBox}>
+              <Text style={styles.addASoundsCardText}>Add New</Text>
             </View>
           </Link>
         </View>
@@ -61,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#660000",
     height: "100%",
     width: "100%",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   addASoundCardSingleBox: {
     borderRadius: 20,

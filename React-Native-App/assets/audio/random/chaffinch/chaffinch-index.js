@@ -1,9 +1,9 @@
-import chaffinch1 from "./Chaffinch.m4a";
-import chaffinch2 from "./Chaffinch2.m4a";
-import chaffinch3 from "./Chaffinch3.m4a";
-import chaffinch4 from "./Chaffinch4.m4a";
-import chaffinch5 from "./Chaffinch5.m4a";
-import chaffinch6 from "./Chaffinch6.m4a";
+import chaffinch1 from "./chaffinch-1.mp3";
+import chaffinch2 from "./chaffinch-2.mp3";
+import chaffinch3 from "./chaffinch-3.mp3";
+import chaffinch4 from "./chaffinch-4.mp3";
+import chaffinch5 from "./chaffinch-5.mp3";
+import chaffinch6 from "./chaffinch-6.mp3";
 
 const chaffinchData = {
   chaffinch1: chaffinch1,

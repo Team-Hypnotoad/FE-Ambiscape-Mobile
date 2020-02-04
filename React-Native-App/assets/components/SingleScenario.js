@@ -20,24 +20,22 @@ export default class SingleScenario extends Component {
     soloChannel: ""
   };
   startScenario = () => {
-    const { randomSoundSpawner } = this;
     const { playing, name, channels } = this.state;
     console.log(`Starting scenario: ${name}`);
-    // if (!playing) {
-    this.setState({ playing: true });
-    // engine.unmuteAll();
-    engine.playBackgroundHowls(channels);
-    const randomChannels = channels.filter(channel => {
-      return channel.type === "random";
-    });
-    randomChannels.forEach(channel => {
-      const { slug } = channel;
-      const { playQueue } = channel;
-      // engine.randomSoundSpawner(playerFunction, slug, playing);
-      // engine.startRandomHowls();
-      engine.loop(slug, this.playNextRandomSound, playing);
-    });
-    // }
+    if (!playing) {
+      this.setState({ playing: true });
+      // engine.unmuteAll();
+      engine.playBackgroundHowls(channels);
+      const randomChannels = channels.filter(channel => {
+        return channel.type === "random";
+      });
+      randomChannels.forEach(channel => {
+        const { slug, frequency } = channel;
+        // const { playQueue } = channel;
+        engine.startRandomHowls();
+        engine.loop(slug, frequency, this.playNextRandomSound, playing);
+      });
+    }
   };
 
   componentWillUnmount() {
@@ -51,15 +49,16 @@ export default class SingleScenario extends Component {
     if (playing) {
       this.setState({ playing: false });
     }
-    // engine.muteAll();
-    // engine.stopRandomHowls();
-
     channels.forEach(channel => {
       const { slug, type } = channel;
       if (type === "background") {
         engine.stopHowl(slug);
+      } else if (type === "random") {
+        engine.stopHowl(slug);
       }
     });
+    // engine.muteAll();
+    engine.stopRandomHowls();
   };
 
   playNextRandomSound = slug => {
@@ -170,6 +169,7 @@ export default class SingleScenario extends Component {
   }
   componentDidMount() {
     const { scenario_id } = this.props.location.state;
+    console.log(scenario_id);
     const filteredScenario = scenarios.filter(scenario => {
       return scenario.slug === scenario_id;
     })[0];

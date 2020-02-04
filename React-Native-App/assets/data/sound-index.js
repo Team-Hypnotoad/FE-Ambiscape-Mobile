@@ -1,4 +1,4 @@
-import bgData from "../audio/background/bg-index";
+import bgData from "../audio/background/background-index";
 import randomData from "../audio/random/random-index";
 
 export const audioData = {

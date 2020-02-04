@@ -26,10 +26,10 @@ export const loadAllHowls = channels => {
   });
 };
 
-export const playHowl = (url, vol, pan) => {
+export const playHowl = (url, vol) => {
   const thisHowl = allHowls[url];
   console.log(url);
-  if (vol) {
+  if (vol > 0) {
     thisHowl.setStatusAsync({
       shouldPlay: true,
       volume: vol
@@ -75,10 +75,12 @@ export const playBackgroundHowls = channels => {
 };
 
 export const startRandomHowls = () => {
+  console.log("started random howls");
   shouldPlay = true;
 };
 
 export const stopRandomHowls = () => {
+  console.log("stopped random howls");
   shouldPlay = false;
 };
 
@@ -88,20 +90,27 @@ export const clearAllHowls = () => {
   Howler.volume(1);
 };
 
-export const loop = (slug, playNext) => {
-  const thisInterval = Math.random() * 5000 + 1000;
+export const loop = (slug, frequency, playNext) => {
+  const standardInterval = (1 - frequency) * 16000 + 4000;
+  const intervalVariation = (standardInterval / 5) * Math.random();
+  const thisInterval = standardInterval + intervalVariation;
+
   setTimeout(() => {
-    playNext(slug);
     if (shouldPlay) {
-      loop(slug, playNext);
+      playNext(slug);
+      console.log(`Interval: ${thisInterval}ms`);
+      loop(slug, frequency, playNext);
     }
   }, thisInterval);
 };
 
-// export const muteAll = () => {
-//   Howler.volume(0);
-// };
+export const muteAll = () => {
+  //   for (let [url, thisHowl] of Object.entries(allHowls)) {
+  //     console.log(key);
+  //     return (allHowls[url] = thisHowl.setStatusAsync({ shouldPlay: false }));
+  //   }
+};
 
-// export const unmuteAll = () => {
-//   Audio.volume(1);
-// };
+export const unmuteAll = () => {
+  // Audio.volume(1);
+};

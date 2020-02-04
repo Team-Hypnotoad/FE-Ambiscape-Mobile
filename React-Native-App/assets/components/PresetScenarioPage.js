@@ -7,22 +7,51 @@ import {
   TouchableOpacity,
   ImageBackground
 } from "react-native";
+import { Link } from "react-router-native";
 import ScenarioCards from "./ScenarioCards";
 
-export default class PresetScenarioCard extends Component {
+export default class CustomScenarioCard extends Component {
   state = {
     scenarios: [
       {
-        scenarioSlug: "Beach",
-        image: require("../image/SFC09791.jpg")
+        name: "Forest",
+        slug: "forest"
+        // image: require("../image/SFC09791.jpg")
       },
       {
-        scenarioSlug: "Land mass",
-        image: require("../image/IMG_7115.jpeg")
+        name: "Beach",
+        slug: "beach"
+        // image: require("../image/IMG_7115.jpeg")
       },
       {
-        scenarioSlug: "Leaf Wet",
-        image: require("../image/SFC09791.jpg")
+        name: "City",
+        slug: "city"
+        // image: require("../image/SFC09791.jpg")
+      },
+      {
+        name: "Woodland Camp",
+        slug: "woodland"
+        // image: require("../image/IMG_7115.jpeg")
+      },
+      {
+        name: "Birdsong",
+        slug: "birdsong"
+        // image: require("../image/SFC09791.jpg")
+      },
+      {
+        name: "Waterfall",
+        slug: "waterfall"
+        // image: require("../image/IMG_7115.jpeg")
+      },
+      {
+        name: "Farmyard",
+        slug: "farmyard"
+        // image: require("../image/SFC09791.jpg")
+      },
+      {
+        name: "Rainstorm",
+        slug: "rainstorm"
+        // image: require("../image/IMG_7115.jpeg")
       }
     ]
   };
@@ -34,7 +63,20 @@ export default class PresetScenarioCard extends Component {
         <View style={styles.presetsCardBox}>
           {scenarios.map(scenario => {
             return (
-              <ScenarioCards scenario={scenario} key={scenario.creator_id} />
+              <Link
+                to={{
+                  pathname: "/scenario/new",
+                  state: { scenario_id: `${scenario.slug}` }
+                }}
+              >
+                <View
+                  scenario_id={scenario.slug}
+                  style={styles.addASoundCardSingleBox}
+                >
+                  <Text style={styles.addASoundsCardText}>{scenario.name}</Text>
+                </View>
+              </Link>
+              // <ScenarioCards scenario={scenario} key={scenario.creator_id} />
             );
           })}
         </View>
@@ -54,5 +96,19 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     flexWrap: "wrap"
+  },
+  addASoundCardSingleBox: {
+    borderRadius: 20,
+    margin: 15,
+    width: 150,
+    height: 100,
+    marginBottom: 0,
+    justifyContent: "space-around",
+    // justify: "center"
+    backgroundColor: "white"
+  },
+  addASoundCardText: {
+    alignSelf: "center",
+    fontSize: 30
   }
 });

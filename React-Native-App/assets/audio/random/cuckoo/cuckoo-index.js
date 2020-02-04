@@ -1,10 +1,10 @@
-import cuckoo1 from "./Cuckoo1.m4a";
-import cuckoo2 from "./Cuckoo2.m4a";
-import cuckoo3 from "./Cuckoo3.m4a";
-import cuckoo4 from "./Cuckoo4.m4a";
-import cuckoo5 from "./Cuckoo5.m4a";
-import cuckoo6 from "./Cuckoo6.m4a";
-import cuckoo7 from "./Cuckoo7.m4a";
+import cuckoo1 from "./cuckoo-1.mp3";
+import cuckoo2 from "./cuckoo-2.mp3";
+import cuckoo3 from "./cuckoo-3.mp3";
+import cuckoo4 from "./cuckoo-4.mp3";
+import cuckoo5 from "./cuckoo-5.mp3";
+import cuckoo6 from "./cuckoo-6.mp3";
+import cuckoo7 from "./cuckoo-7.mp3";
 
 const cuckooData = {
   cuckoo1: cuckoo1,
