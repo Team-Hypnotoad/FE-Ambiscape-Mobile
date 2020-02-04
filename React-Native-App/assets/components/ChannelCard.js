@@ -189,7 +189,7 @@ export default class ChannelCard extends Component {
               this.handleChangeFrequency(itemValue, itemIndex);
             }}
             style={{
-              width: "140%"
+              width: "100%"
             }}
           />
         </>
@@ -210,9 +210,7 @@ export default class ChannelCard extends Component {
         <View key={id}>
           <Text style={{ color: "white" }}>{name}</Text>
           {renderChannelVolume()}
-          <Button 
-  
-          title="⌄" onPress={this.handleToggleHighlight}></Button>
+          <Button title="⌄" onPress={this.handleToggleHighlight}></Button>
         </View>
       );
     }

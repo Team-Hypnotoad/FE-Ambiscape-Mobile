@@ -13,7 +13,6 @@ const createHowl = (channel, url) => {
     shouldPlay: false,
     isLooping: loop
   });
-
   allHowls[url] = thisHowl;
 };
 
@@ -103,14 +102,10 @@ export const loop = (slug, frequency, playNext) => {
     }
   }, thisInterval);
 };
-
 export const muteAll = () => {
-  //   for (let [url, thisHowl] of Object.entries(allHowls)) {
-  //     console.log(key);
-  //     return (allHowls[url] = thisHowl.setStatusAsync({ shouldPlay: false }));
-  //   }
+  Audio.setIsEnabledAsync(false);
 };
 
 export const unmuteAll = () => {
-  // Audio.volume(1);
+  Audio.setIsEnabledAsync(true);
 };

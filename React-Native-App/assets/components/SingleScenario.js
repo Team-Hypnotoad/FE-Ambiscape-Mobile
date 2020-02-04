@@ -24,7 +24,7 @@ export default class SingleScenario extends Component {
     console.log(`Starting scenario: ${name}`);
     if (!playing) {
       this.setState({ playing: true });
-      // engine.unmuteAll();
+      engine.unmuteAll();
       engine.playBackgroundHowls(channels);
       const randomChannels = channels.filter(channel => {
         return channel.type === "random";
@@ -57,8 +57,8 @@ export default class SingleScenario extends Component {
         engine.stopHowl(slug);
       }
     });
-    // engine.muteAll();
     engine.stopRandomHowls();
+    engine.muteAll();
   };
 
   playNextRandomSound = slug => {
@@ -80,6 +80,9 @@ export default class SingleScenario extends Component {
       thisChannel.playQueue = shuffledURLs;
     }
     const newChannels = [thisChannel, ...otherChannels];
+    newChannels.sort((a, b) => {
+      return a.id - b.id;
+    });
     this.setState({
       channels: newChannels
     });
@@ -168,6 +171,7 @@ export default class SingleScenario extends Component {
     );
   }
   componentDidMount() {
+    engine.unmuteAll();
     const { scenario_id } = this.props.location.state;
     console.log(scenario_id);
     const filteredScenario = scenarios.filter(scenario => {
