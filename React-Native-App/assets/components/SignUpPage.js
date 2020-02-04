@@ -9,13 +9,10 @@ import {
 } from "react-native";
 import { Link } from "react-router-native";
 
-class LogInPage extends Component {
-  state = {
-    showPassword: false
-  };
+class SignUpPage extends Component {
   render() {
     return (
-      <View style={styles.loginPageOuterBox}>
+      <View>
         <ImageBackground
           source={{
             uri:
@@ -32,18 +29,14 @@ class LogInPage extends Component {
             justifyContent: "center"
           }}
         >
-          <Text style={styles.loginPageText}>Ambiscape</Text>
           <View style={styles.loginPageInnerBox}>
-            {/* <Image
-              source={require("../image/icons8-frog-96.png")}
-              style={{ size: "0%" }}
-            /> */}
-
             <View style={styles.loginPageInputOuterBox}>
-              <Text style={styles.loginPageTextSmall}>Email</Text>
+              <Link to="/" style={styles.loginPageBackButton}>
+                <Text style={styles.loginPageBackButton}>⏎</Text>
+              </Link>
+              <Text style={styles.loginPageText}>Sign Up</Text>
+              <Text style={styles.loginPageTextSmall}>Email Address</Text>
               <TextInput
-                inputT
-                keyboardType="email-address"
                 autoCompleteType="email"
                 placeholder="example@email.com"
                 placeholderTextColor="gray"
@@ -51,14 +44,29 @@ class LogInPage extends Component {
                   height: 40,
                   borderRadius: 10,
                   borderColor: "white",
-                  borderWidth: 1,
                   paddingLeft: 5,
+                  borderWidth: 1,
                   width: "70%",
                   color: "white"
                 }}
               />
-
               <Text style={styles.loginPageTextSmall}>Password</Text>
+              <TextInput
+                secureTextEntry={true}
+                autoCompleteType="password"
+                placeholder="password"
+                placeholderTextColor="gray"
+                style={{
+                  height: 40,
+                  borderRadius: 10,
+                  borderColor: "white",
+                  paddingLeft: 5,
+                  borderWidth: 1,
+                  width: "70%",
+                  color: "white"
+                }}
+              />
+              <Text style={styles.loginPageTextSmall}>Confirm Password</Text>
               <TextInput
                 secureTextEntry={true}
                 autoCompleteType="password"
@@ -74,20 +82,11 @@ class LogInPage extends Component {
                   color: "white"
                 }}
               />
-              <TouchableOpacity>
-                <Text style={styles.loginPageTextSmallest}>
-                  Forgot password
-                </Text>
-              </TouchableOpacity>
             </View>
 
             <View style={styles.loginPageButton}>
-              <Link to="/home">
-                <Text style={styles.loginPageTextButton}>LOGIN</Text>
-              </Link>
-
-              <Link to="/signup">
-                <Text style={styles.loginPageTextButton}>SIGN UP</Text>
+              <Link to="/">
+                <Text style={styles.loginPageTextButton}>Submit</Text>
               </Link>
             </View>
           </View>
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
   loginPageInnerBox: {
     borderRadius: 20,
     backgroundColor: "black",
-    height: "40%",
+    height: "70%",
     width: "70%",
     alignItems: "center",
     justifyContent: "center",
@@ -120,15 +119,18 @@ const styles = StyleSheet.create({
   },
   loginPageText: {
     color: "white",
-    fontSize: 50,
+    fontSize: 40,
     paddingBottom: "10%",
+    marginTop: "10%",
     textShadowColor: "rgba(255, 255, 255, 0.9)",
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 15
   },
   loginPageTextSmall: {
     color: "white",
-    alignSelf: "center"
+    alignSelf: "flex-start",
+    marginTop: "10%",
+    marginLeft: "20%"
   },
   loginPageTextSmallest: {
     color: "white",
@@ -150,7 +152,14 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 1,
     borderColor: "#d6d7da"
+  },
+  loginPageBackButton: {
+    color: "white",
+    alignSelf: "flex-start",
+    fontSize: 50,
+    marginTop: "10%",
+    marginLeft: "5%"
   }
 });
 
-export default LogInPage;
+export default SignUpPage;

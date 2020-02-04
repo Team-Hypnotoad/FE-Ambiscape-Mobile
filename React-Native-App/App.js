@@ -8,6 +8,7 @@ import SettingsMenu from "./assets/components/SettingsMenu";
 import Animations from "./assets/components/Animations";
 import IsLoading from "./assets/components/IsLoading";
 import LogInPage from "./assets/components/LogInPage";
+import SignUpPage from "./assets/components/SignUpPage";
 
 export default class App extends Component {
   render() {
@@ -18,8 +19,10 @@ export default class App extends Component {
             justifyContent: "center"
           }}
         >
-          {/* <Header /> */}
           <Route exact path="/" component={LogInPage} />
+          <Route exact path="/signup" component={SignUpPage} />
+          <Header />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/scenario/new" component={NewScenario} />
           <Route exact path="/settingsmenu" component={SettingsMenu} />
         </View>

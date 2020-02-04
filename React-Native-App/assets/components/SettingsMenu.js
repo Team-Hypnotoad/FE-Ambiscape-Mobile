@@ -5,7 +5,7 @@ export default function SettingsMenu() {
   return (
     <View style={styles.settingsMenuBox}>
       <TouchableOpacity style={styles.settingsMenuSingleBoxTop}>
-        <Text style={styles.settingsMenuText}>settings</Text>
+        <Text style={styles.settingsMenuText}>fuck</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.settingsMenuSingleBox}>
         <Text style={styles.settingsMenuText}>option 2</Text>
