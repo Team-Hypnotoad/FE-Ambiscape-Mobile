@@ -43,7 +43,7 @@ const ChannelList = ({
     return (
       <View>
         <View key="bgSounds" style={styles.itemsBg}>
-          <Text style={{ color: "white" }}>Background Sounds</Text>
+          <Text style={styles.headingText}>Background Sounds</Text>
           {channels.map(sound => {
             if (sound.type === "background") {
               return renderChannelCard(sound);
@@ -51,7 +51,7 @@ const ChannelList = ({
           })}
         </View>
         <View key="RandomSound" style={styles.itemsRandom}>
-          <Text style={{ color: "white" }}>Random Sounds</Text>
+          <Text style={styles.headingText}>Random Sounds</Text>
           {channels.map(sound => {
             if (sound.type === "random") {
               return renderChannelCard(sound);
@@ -70,11 +70,13 @@ const ChannelList = ({
 };
 
 const styles = StyleSheet.create({
-  // contentContainer: {
-  //   paddingVertical: 20
-  // },
+  headingText: {
+    color: "white",
+    alignSelf: "center",
+    fontSize: 20
+  },
   itemsBg: {
-    marginTop: 120,
+    marginTop: 20,
     marginRight: 20,
     marginBottom: 20,
     width: 250
@@ -88,9 +90,9 @@ const styles = StyleSheet.create({
   container: {
     color: "white",
     backgroundColor: "black",
-    opacity: 0.8,
-    borderColor: "black",
-    borderWidth: 0.5,
+    opacity: 0.7,
+    borderColor: "white",
+    borderWidth: 1,
     borderRadius: 8,
     marginTop: 20
   }

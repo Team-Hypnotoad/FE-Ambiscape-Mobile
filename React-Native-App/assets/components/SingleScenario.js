@@ -5,6 +5,7 @@ import ChannelList from "./ChannelList";
 import * as engine from "../utils/audio-engine";
 import scenarios from "../data/scenarios";
 import sounds from "../data/sounds";
+import Header from "./Header";
 
 export default class SingleScenario extends Component {
   state = {
@@ -53,7 +54,7 @@ export default class SingleScenario extends Component {
       const { slug, type } = channel;
       if (type === "background") {
         engine.stopHowl(slug);
-      } 
+      }
     });
     engine.stopRandomHowls();
     engine.muteAll();
@@ -126,7 +127,8 @@ export default class SingleScenario extends Component {
     const { channels, playing, highlightedChannel, soloChannel } = this.state;
     // console.log(channels);
     return (
-      <View>
+      <View style={styles.outerView}>
+        <Header />
         <ScrollView alwaysBounceVertical={false} alwaysBounceHorizontal={false}>
           <View style={styles.contentContainer}>
             <ImageBackground
@@ -141,7 +143,7 @@ export default class SingleScenario extends Component {
                 // position: "relative",
                 top: 0,
                 left: 0,
-                justifyContent: "center",
+                // justifyContent: "center"
                 alignItems: "center"
               }}
             >
@@ -171,7 +173,6 @@ export default class SingleScenario extends Component {
   componentDidMount() {
     engine.unmuteAll();
     const { scenario_id } = this.props.location.state;
-    console.log(scenario_id);
     const filteredScenario = scenarios.filter(scenario => {
       return scenario.slug === scenario_id;
     })[0];
@@ -213,8 +214,11 @@ export default class SingleScenario extends Component {
 }
 
 const styles = StyleSheet.create({
+  outerView: {
+    marginTop: 24,
+    top: 0
+  },
   contentContainer: {
-    marginTop: 50,
     marginBottom: 60,
     alignItems: "center"
   },

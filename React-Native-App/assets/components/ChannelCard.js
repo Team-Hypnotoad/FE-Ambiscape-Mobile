@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Slider, Button } from "react-native";
+import { View, Text, Slider, Button, StyleSheet } from "react-native";
 
 export default class ChannelCard extends Component {
   state = {
@@ -150,11 +150,11 @@ export default class ChannelCard extends Component {
     const renderChannelVolume = () => {
       return (
         <View
-          style={{
-            marginBottom: 20
-          }}
+          style={StyleSheet.OuterBox}
         >
-          {isHighlighted && <Text style={{ color: "white" }}>Volume</Text>}
+          {isHighlighted && (
+            <Text style={{ color: "white", alignSelf: "center" }}>Volume</Text>
+          )}
           <Slider
             minimumTrackTintColor="green"
             value={this.state.volume}
@@ -163,7 +163,8 @@ export default class ChannelCard extends Component {
               this.handleChangeVolume(itemValue, itemIndex)
             }
             style={{
-              width: "100%"
+              width: "80%",
+              alignSelf: "center"
             }}
           />
         </View>
@@ -180,7 +181,7 @@ export default class ChannelCard extends Component {
     const renderChannelFrequency = () => {
       return (
         <>
-          <Text style={{ color: "white" }}>Frequency</Text>
+          <Text style={{ color: "white", alignSelf: "center" }}>Frequency</Text>
           <Slider
             minimumTrackTintColor="green"
             value={this.state.frequency}
@@ -189,7 +190,8 @@ export default class ChannelCard extends Component {
               this.handleChangeFrequency(itemValue, itemIndex);
             }}
             style={{
-              width: "100%"
+              width: "80%",
+              alignSelf: "center"
             }}
           />
         </>
@@ -198,7 +200,16 @@ export default class ChannelCard extends Component {
     if (isHighlighted) {
       return (
         <View key={id}>
-          <Text style={{ color: "white" }}>{name}</Text>
+          <Text
+            style={{
+              color: "white",
+              alignSelf: "center",
+              marginTop: 10,
+              fontSize: 20
+            }}
+          >
+            {name}
+          </Text>
           {renderChannelButtons()}
           {renderChannelVolume()}
           {type === "random" && renderChannelFrequency()}
@@ -208,7 +219,16 @@ export default class ChannelCard extends Component {
     } else {
       return (
         <View key={id}>
-          <Text style={{ color: "white" }}>{name}</Text>
+          <Text
+            style={{
+              color: "white",
+              alignSelf: "center",
+              marginTop: 10,
+              fontSize: 20
+            }}
+          >
+            {name}
+          </Text>
           {renderChannelVolume()}
           <Button title="⌄" onPress={this.handleToggleHighlight}></Button>
         </View>
@@ -216,3 +236,9 @@ export default class ChannelCard extends Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  OuterBox: {
+    marginBottom: 30,
+  }
+})
