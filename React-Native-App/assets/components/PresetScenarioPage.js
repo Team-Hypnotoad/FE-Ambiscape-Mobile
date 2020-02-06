@@ -53,6 +53,14 @@ export default class CustomScenarioCard extends Component {
         name: "Rainstorm",
         slug: "rainstorm"
         // image: require("../image/IMG_7115.jpeg")
+      },
+      { 
+        name: "Dungeon",
+        slug: "dungeon" 
+      },
+      {
+        name: "Dungeon",
+        slug: "dungeon"
       }
     ],
     isLoading: false
@@ -73,6 +81,7 @@ export default class CustomScenarioCard extends Component {
           {scenarios.map(scenario => {
             return (
               <Link
+                key={scenario.slug}
                 to={{
                   pathname: "/scenario/new",
                   state: { scenario_id: `${scenario.slug}` }

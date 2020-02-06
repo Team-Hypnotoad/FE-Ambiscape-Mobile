@@ -18,6 +18,9 @@ import rumblingfire from "./rumbling-fire.mp3";
 import smallstream from "./small-stream.mp3";
 import snowstorm from "./snowstorm.mp3";
 import summerambience from "./summer-ambience.mp3";
+import terrordarkplace from './terrordarkplace.mp3';
+import watertubes from "./watertubes.mp3"
+import evil from "./evil.mp3";
 
 const backgroundData = {
   campfire: {
@@ -79,6 +82,15 @@ const backgroundData = {
   },
   summerambience: {
     summerambience: summerambience
+  } ,
+  watertubes: {
+    watertubes: watertubes
+  },
+  terrordarkplace:{
+    terrordarkplace: terrordarkplace
+  },
+  evil: {
+    evil: evil
   }
 };
 

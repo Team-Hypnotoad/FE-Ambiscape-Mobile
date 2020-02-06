@@ -166,6 +166,30 @@ const backgroundSounds = [
     type: "background",
     loop: true,
     urls: ["summerambience"]
+  },
+  {
+    id: 587,
+    name: "Evil",
+    slug: "evil",
+    type: "background",
+    loop: true,
+    urls: ["evil"]
+  },
+  {
+    id: 588,
+    name: "Terror Dark Place",
+    slug: "terrordarkplace",
+    type: "background",
+    loop: true,
+    urls: ["terrordarkplace"]
+  },
+  {
+    id: 589,
+    name: "Water Tubes",
+    slug: "watertubes",
+    type: "background",
+    loop: true,
+    urls: ["watertubes"]
   }
 ];
 

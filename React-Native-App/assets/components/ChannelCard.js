@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, Slider, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Slider,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  Image
+} from "react-native";
 
 export default class ChannelCard extends Component {
   state = {
@@ -131,7 +139,9 @@ export default class ChannelCard extends Component {
     toggleHighlight(slug);
   };
 
-  handleToggleMute = () => {};
+  handleToggleMute = (url, bool) => {
+    this.props.muteSolo(url, bool);
+  };
 
   handleToggleSolo = () => {};
 
@@ -149,9 +159,7 @@ export default class ChannelCard extends Component {
     const { isHighlighted, highlightChannel } = this.props;
     const renderChannelVolume = () => {
       return (
-        <View
-          style={StyleSheet.OuterBox}
-        >
+        <View style={StyleSheet.OuterBox}>
           {isHighlighted && (
             <Text style={{ color: "white", alignSelf: "center" }}>Volume</Text>
           )}
@@ -173,8 +181,19 @@ export default class ChannelCard extends Component {
     const renderChannelButtons = () => {
       return (
         <>
-          <Button title="M" onPress={this.handleToggleMute}></Button>
-          <Button title="S" onPress={this.handleToggleSolo}></Button>
+          <TouchableOpacity
+            onPress={() => {
+              this.handleToggleMute(this.state.slug, this.state.mute);
+              this.setState(currentState => {
+                return { mute: !currentState.mute };
+              });
+            }}
+          >
+            <Text style={{ alignSelf: "center", color: "white", fontSize: 25, paddingBottom:15, paddingTop:15 }}>
+              {this.state.mute ? "🔇" : "🔈"}
+            </Text>
+          </TouchableOpacity>
+          {/* <Button title="S" onPress={this.handleToggleSolo}></Button> */}
         </>
       );
     };
@@ -239,6 +258,6 @@ export default class ChannelCard extends Component {
 
 const styles = StyleSheet.create({
   OuterBox: {
-    marginBottom: 30,
+    marginBottom: 30
   }
-})
+});

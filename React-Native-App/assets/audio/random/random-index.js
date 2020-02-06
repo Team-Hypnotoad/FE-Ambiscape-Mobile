@@ -22,6 +22,7 @@ import waterDropsData from "./water-drops/water-drops-index";
 import waterSplashData from "./water-splash/water-splash-index";
 import woodPidgeonData from "./wood-pidgeon/wood-pidgeon-index";
 import woodpeckerData from "./woodpecker/woodpecker-index";
+import monsterData from "./monster/monster-index";
 
 const randomData = {
   bee: beeData,
@@ -47,7 +48,8 @@ const randomData = {
   waterdrops: waterDropsData,
   watersplash: waterSplashData,
   woodpidgeon: woodPidgeonData,
-  woodpecker: woodpeckerData
+  woodpecker: woodpeckerData,
+  monster: monsterData
 };
 
 export default randomData;

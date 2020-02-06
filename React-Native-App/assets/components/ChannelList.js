@@ -1,9 +1,20 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { List, ListItem } from "react-native-elements";
 import ChannelCard from "./ChannelCard";
+import PickerMenu from "./PickerMenu";
 
 const ChannelList = ({
+  handleBGS,
+  showPicker,
+  handleAdder,
+  muteSolo,
   highlightedChannel,
   soloChannel,
   toggleHighlightedChannel,
@@ -19,8 +30,8 @@ const ChannelList = ({
     return (
       <View style={styles.container}>
         <ChannelCard
-          key={sound.id}
           sound={sound}
+          muteSolo={muteSolo}
           key={sound.id}
           changeVolume={changeVolume}
           changeFrequency={changeFrequency}
@@ -50,6 +61,18 @@ const ChannelList = ({
             }
           })}
         </View>
+        {/* <View>
+          <TouchableOpacity
+            onPress={() => {
+              handleAdder();
+            }}
+          >
+            <Text style={{ fontSize: 30 }}>+</Text>
+          </TouchableOpacity>
+          <>
+          {showPicker ? <PickerMenu handleBGS={handleBGS}/> : null}
+          </>
+        </View> */}
         <View key="RandomSound" style={styles.itemsRandom}>
           <Text style={styles.headingText}>Random Sounds</Text>
           {channels.map(sound => {

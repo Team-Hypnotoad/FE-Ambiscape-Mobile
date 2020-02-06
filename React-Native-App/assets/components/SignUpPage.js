@@ -31,7 +31,7 @@ class SignUpPage extends Component {
         >
           <View style={styles.loginPageInnerBox}>
             <View style={styles.loginPageInputOuterBox}>
-              <Link to="/" style={styles.loginPageBackButton}>
+              <Link to="/" style={styles.loginPageBackButtonBox}>
                 <Text style={styles.loginPageBackButton}>⏎</Text>
               </Link>
               <Text style={styles.loginPageText}>Sign Up</Text>
@@ -156,10 +156,13 @@ const styles = StyleSheet.create({
   },
   loginPageBackButton: {
     color: "white",
-    alignSelf: "flex-start",
+
     fontSize: 50,
     marginTop: "10%",
     marginLeft: "5%"
+  },
+  loginPageBackButtonBox: {
+    alignSelf: "flex-start"
   }
 });
 

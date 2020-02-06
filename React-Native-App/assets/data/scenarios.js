@@ -389,6 +389,49 @@ const scenarios = [
         frequency: 0.16
       }
     ]
+  },
+  {
+    name: "Dungeon",
+    slug: "dungeon",
+    creator_id: 0,
+    color_scheme: [],
+    is_public: true,
+    likes: 0,
+    sounds: [
+      {
+        id: 587,
+        slug: "evil",
+        volume: 0.7,
+        pan: -0.66
+      },
+      {
+        id: 588,
+        slug: "terrordarkplace",
+        volume: 0.6,
+        pan: 0.42
+      },
+      {
+        id: 589,
+        slug: "watertubes",
+        volume: 0.4,
+        pan: 0,
+        frequency: 0.17
+      },
+      {
+        id: 20,
+        slug: "waterdrops",
+        volume: 0.15,
+        pan: 0.39,
+        frequency: 0.16
+      },
+      {
+        id: 99,
+        slug: "monster",
+        volume: 0.5,
+        pan: 0.39,
+        frequency: 0.16
+      }
+    ]
   }
 ];
 

@@ -5,14 +5,15 @@ import Home from "./assets/components/Home";
 import Header from "./assets/components/Header";
 import SettingsMenu from "./assets/components/SettingsMenu";
 import LogInPage from "./assets/components/LogInPage";
+import AboutPage from "./assets/components/AboutPage";
 import SignUpPage from "./assets/components/SignUpPage";
-import SingleScenario from "./assets/components/SingleScenario"
+import SingleScenario from "./assets/components/SingleScenario";
 // import * as firebase from "firebase"
 
 export default class App extends Component {
   state = {
     isLoadingComplete: false
-  }
+  };
   render() {
     // if(!firebase.apps.length) {firebase.initializeApp(ApiKeys.FirebaseConfig);}
     return (
@@ -28,6 +29,7 @@ export default class App extends Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/scenario/new" component={SingleScenario} />
           <Route exact path="/settingsmenu" component={SettingsMenu} />
+          <Route exact path="/aboutus" component={AboutPage} />
         </View>
       </NativeRouter>
     );

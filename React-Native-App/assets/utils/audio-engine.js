@@ -3,17 +3,29 @@ import { Audio } from "expo-av";
 // const spatial = require("howler/src/plugins/howler.spatial.js");
 
 let allHowls = {};
+let loops = {};
 let shouldPlay = false;
 
 const createHowl = (channel, url) => {
   const { stereo, loop, html5, type, slug } = channel;
   const filePath = audioData[type][slug][url];
+  console.log(slug);
   const thisHowl = new Audio.Sound();
   thisHowl.loadAsync(filePath, {
     shouldPlay: false,
     isLooping: loop
   });
   allHowls[url] = thisHowl;
+  if (type === "random") {
+    loops[slug] = true;
+  }
+};
+
+export const loadHowlsForOneChannel = channel => {
+  const { urls } = channel;
+  urls.forEach(url => {
+    createHowl(channel, url);
+  });
 };
 
 export const loadAllHowls = channels => {
@@ -27,7 +39,8 @@ export const loadAllHowls = channels => {
 
 export const playHowl = (url, vol) => {
   const thisHowl = allHowls[url];
-  if (allHowls[url]) {
+  console.log(url);
+  if (allHowls[url] && vol) {
     thisHowl.setStatusAsync({
       shouldPlay: true,
       volume: vol
@@ -88,23 +101,49 @@ export const clearAllHowls = () => {
   Howler.volume(1);
 };
 
-export const loop = (slug, frequency, playNext) => {
-  const standardInterval = (1 - frequency) * 16000 + 4000;
-  const intervalVariation = (standardInterval / 5) * Math.random();
-  const thisInterval = standardInterval + intervalVariation;
-
-  setTimeout(() => {
-    if (shouldPlay) {
-      playNext(slug);
-      console.log(`Interval: ${thisInterval}ms`);
-      loop(slug, frequency, playNext);
-    }
-  }, thisInterval);
-};
 export const muteAll = () => {
   Audio.setIsEnabledAsync(false);
 };
 
 export const unmuteAll = () => {
   Audio.setIsEnabledAsync(true);
+};
+
+export const muteIndividualSound = (url, bool) => {
+  // console.log(url, bool);
+  const thisHowl = allHowls[url];
+  thisHowl.setStatusAsync({ isMuted: !bool });
+};
+
+export const startOneRandomChannel = (slug, frequency, playNext) => {
+  console.log("starting", slug);
+  if (frequency) {
+    loops[slug] = true;
+    loop(slug, frequency, playNext);
+  } else {
+    console.log(slug)
+    loops[slug] = true;
+  }
+};
+
+export const stopOneRandomChannel = slug => {
+  console.log("stopping", slug);
+  loops[slug] = false;
+
+  // urls.forEach(url => {
+  //   allHowls[url] = null;
+  // });
+};
+
+export const loop = (slug, frequency, playNext) => {
+  const standardInterval = (1 - frequency) * 16000 + 4000;
+  const intervalVariation = (standardInterval / 5) * Math.random();
+  const thisInterval = standardInterval + intervalVariation;
+  setTimeout(() => {
+    if (loops[slug] === true) {
+      playNext(slug);
+      console.log(`Interval: ${thisInterval}ms`);
+    }
+    loop(slug, frequency, playNext);
+  }, thisInterval);
 };

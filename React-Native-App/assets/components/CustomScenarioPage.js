@@ -8,10 +8,10 @@ import {
   ScrollView
 } from "react-native";
 import { Link } from "react-router-native";
-import ScenarioCards from "./ScenarioCards";
+// import ScenarioCards from "./ScenarioCards";
 import IsLoading from "./IsLoading";
 
-export default class CustomScenarioCard extends Component {
+export default class CustomScenarioPage extends Component {
   state = {
     isLoading: false
   };

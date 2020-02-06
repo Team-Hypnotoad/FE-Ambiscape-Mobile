@@ -34,9 +34,12 @@ export default class Header extends Component {
             <TouchableOpacity>
               <Text style={styles.settingsMenuText}>Settings</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.settingsMenuText}>About</Text>
-            </TouchableOpacity>
+            <Link
+              to="/aboutus"
+              onPress={() => this.setState({ isVisible: false })}
+            >
+              <Text style={styles.settingsMenuText}>About Us</Text>
+            </Link>
             <TouchableOpacity>
               <Text style={styles.settingsMenuText}>Help</Text>
             </TouchableOpacity>

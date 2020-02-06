@@ -356,6 +356,14 @@ const randomSounds = [
     type: "random",
     loop: false,
     urls: ["construction1", "construction2"]
+  },
+  {
+    id: 99,
+    name: "Monster",
+    slug: "monster",
+    type: "random",
+    loop: false,
+    urls: ["monster1", "monster2"]
   }
 ];
 

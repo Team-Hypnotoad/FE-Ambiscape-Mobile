@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Audio } from "expo-av";
-import { audioData } from "../audio/bg-index";
+import backgroundData from "../audio/background/background-index";
 import { Header } from "./Header";
 
 import {
@@ -15,45 +15,45 @@ import {
 export default class PickerMenu extends Component {
   state = {
     volume: 0.5,
-    frequency: 25000,
-    selectedBGS: "american-teenagers-sprite.m4a",
+    frequency: 0.5,
+    selectedBGS: "",
     soundsIndex: [],
     isPlaying: false,
     BGsound1: null
   };
   render() {
-    console.log(this.state.selectedBGS);
+    const { soundsIndex } = this.state;
     return (
       <>
         {/* <Header /> */}
-        <View style={styles.outerBox}>
+        {/* <View style={styles.outerBox}>
           <TouchableOpacity style={styles.innerBox} onPress={this.Handlepress}>
             <Text style={styles.headText}>Play/Pause</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.innerBox} onPress={this.Handlestop}>
             <Text style={styles.headText}>Stop</Text>
-          </TouchableOpacity>
-          <View style={styles.picker}>
-            <Picker
-              mode="dropdown"
-              selectedValue={this.state.selectedBGS}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ selectedBGS: itemValue })
-              }
-            >
-              {this.state.soundsIndex.map(sound => {
-                return (
-                  <Picker.Item
-                    key={sound}
-                    label={sound}
-                    value={audioData[sound]}
-                  />
-                );
-              })}
-            </Picker>
-          </View>
+          </TouchableOpacity> */}
+        <View style={styles.picker}>
+          <Picker
+            mode="dropdown"
+            selectedValue={this.state.selectedBGS}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ selectedBGS: itemValue })
+            }
+          >
+            {soundsIndex.map(sound => {
+              return (
+                <Picker.Item
+                  key={sound}
+                  label={sound}
+                  value={sound}
+                />
+              );
+            })}
+          </Picker>
+        </View>
 
-          <View style={styles.innerBox}>
+        {/* <View style={styles.innerBox}>
             <Text>Volume</Text>
             <Slider
               style={{ width: "60%" }}
@@ -71,15 +71,16 @@ export default class PickerMenu extends Component {
               value={this.state.frequency}
               onValueChange={frequency => this.setState({ frequency })}
             />
-          </View>
-        </View>
+          </View> */}
+        {/* </View> */}
       </>
     );
   }
   componentDidMount() {
+    // console.log(backgroundData);
     this.setState({
-      soundsIndex: Object.keys(audioData),
-      selectedBGS: audioData["americanTeenagersSprite"]
+      soundsIndex: Object.keys(backgroundData),
+      selectedBGS: Object.keys(Object.keys(backgroundData)[0])
     });
   }
   Handlestop = () => {

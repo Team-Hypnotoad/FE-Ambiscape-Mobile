@@ -33,21 +33,22 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 70,
-    marginBottom: 40,
-    backgroundColor: "grey",
+    height: 80,
+    marginBottom: 0,
+    backgroundColor: "black",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center"
   },
   TouchableOpacity: {
-    fontSize: 50
-    // alignSelf: "center"
+    fontSize: 50,
+    color: "white"
     // justifyContent: "center"
   },
   TouchableOpacity2: {
-    fontSize: 50
+    fontSize: 50,
+    color: "white"
     // alignSelf: "center"
     // justifyContent: "center"
   }

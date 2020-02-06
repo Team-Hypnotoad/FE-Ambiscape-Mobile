@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import PresetScenarioPage from "./PresetScenarioPage";
 import CustomScenarioPage from "./CustomScenarioPage";
+import IsLoading from "./IsLoading";
 import * as Font from "expo-font";
 
 export default class Home extends Component {
@@ -18,6 +19,14 @@ export default class Home extends Component {
   };
 
   render() {
+    const { isLoading } = this.state;
+    if (isLoading) {
+      return (
+        <View style={styles.scrollViewBox}>
+          <IsLoading />
+        </View>
+      );
+    }
     return (
       <View style={styles.homePageOuterBox}>
         <ImageBackground
@@ -75,6 +84,8 @@ export default class Home extends Component {
   componentDidMount() {
     Font.loadAsync({
       Oswald: require("../fonts/Oswald-Bold.ttf")
+    }).then(() => {
+      this.setState({ isLoading: false });
     });
   }
   handlePress = selectedLink => {
@@ -85,14 +96,17 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  scrollViewBox: {
+    height: "100%"
+  },
   homePageOuterBox: {
     height: "89%"
   },
   navBarLinks: {
+    fontFamily: "Oswald",
     flexDirection: "row",
     height: 50,
     width: "100%",
-    // fontFamily: "Oswald",
     fontSize: 50
   },
   topLink: {
@@ -109,7 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   linkText: {
-    // fontFamily: "Oswald",
+    fontFamily: "Oswald",
     fontSize: 30,
     color: "white"
   }
