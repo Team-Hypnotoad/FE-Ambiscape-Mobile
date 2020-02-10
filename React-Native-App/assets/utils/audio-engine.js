@@ -9,7 +9,6 @@ let shouldPlay = false;
 const createHowl = (channel, url) => {
   const { stereo, loop, html5, type, slug } = channel;
   const filePath = audioData[type][slug][url];
-  console.log(slug);
   const thisHowl = new Audio.Sound();
   thisHowl.loadAsync(filePath, {
     shouldPlay: false,
@@ -39,17 +38,12 @@ export const loadAllHowls = channels => {
 
 export const playHowl = (url, vol) => {
   const thisHowl = allHowls[url];
-  console.log(url);
   if (allHowls[url] && vol) {
     thisHowl.setStatusAsync({
       shouldPlay: true,
       volume: vol
     });
   }
-  // if (allHowls[url]) {
-  //   console.log(`Playing ${url}`);
-  //   thisHowl.playAsync();
-  // }
 };
 
 export const stopHowl = url => {
@@ -64,16 +58,9 @@ export const changeVolumeOfHowl = (url, volume) => {
   }
 };
 
-// export const changePanOfHowl = (url, pan) => {
-//   const thisPan = parseFloat(pan);
-//   if (allHowls[url]) {
-//     allHowls[url].stereo(thisPan);
-//   }
-// };
 
 export const playBackgroundHowls = channels => {
   if (!allHowls) {
-    console.log("ERROR = No sounds loaded");
   } else {
     channels.forEach(channel => {
       const { type, urls, volume } = channel;
@@ -110,29 +97,26 @@ export const unmuteAll = () => {
 };
 
 export const muteIndividualSound = (url, bool) => {
-  // console.log(url, bool);
   const thisHowl = allHowls[url];
   thisHowl.setStatusAsync({ isMuted: !bool });
 };
 
 export const startOneRandomChannel = (slug, frequency, playNext) => {
-  console.log("starting", slug);
+
   if (frequency) {
     loops[slug] = true;
     loop(slug, frequency, playNext);
   } else {
-    console.log(slug)
+  
     loops[slug] = true;
   }
 };
 
 export const stopOneRandomChannel = slug => {
-  console.log("stopping", slug);
+
   loops[slug] = false;
 
-  // urls.forEach(url => {
-  //   allHowls[url] = null;
-  // });
+
 };
 
 export const loop = (slug, frequency, playNext) => {

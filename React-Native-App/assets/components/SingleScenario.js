@@ -23,7 +23,6 @@ export default class SingleScenario extends Component {
   };
   startScenario = () => {
     const { playing, name, channels } = this.state;
-    console.log(`Starting scenario: ${name}`);
     if (!playing) {
       this.setState({ playing: true });
       engine.unmuteAll();
@@ -33,8 +32,6 @@ export default class SingleScenario extends Component {
       });
       randomChannels.forEach(channel => {
         const { slug, frequency } = channel;
-        // const { playQueue } = channel;
-        // engine.startRandomHowls();
         engine.startOneRandomChannel(slug, frequency, this.playNextRandomSound);
       });
     }
@@ -47,7 +44,6 @@ export default class SingleScenario extends Component {
   stopScenario = () => {
     const { playing } = this.state;
     const { name, channels } = this.state;
-    console.log(`Stopping scenario: ${name}`);
     if (playing) {
       this.setState({ playing: false });
     }
@@ -58,7 +54,6 @@ export default class SingleScenario extends Component {
       }
       engine.stopOneRandomChannel(channel.slug);
     });
-    // engine.stopRandomHowls();
     engine.muteAll();
   };
 
@@ -73,7 +68,6 @@ export default class SingleScenario extends Component {
     const { volume, pan, urls } = thisChannel;
     const newPlayQueue = [...thisChannel.playQueue];
     const thisURL = newPlayQueue.shift();
-    console.log(thisURL);
     engine.playHowl(thisURL, volume, pan);
     if (newPlayQueue.length > 0) {
       thisChannel.playQueue = newPlayQueue;
@@ -90,29 +84,7 @@ export default class SingleScenario extends Component {
     });
   };
   handleBGS = (choice) => {
-    // const newChannels = [];
-    // backgroundSounds.forEach(sound => {
-    //   const { slug } = sound;
-    //   const filteredSound = sounds.filter(sound => {
-    //     return sound.slug === slug;
-    //   })[0];
-    //   const newChannel = {
-    //     ...filteredSound,
-    //     ...sound,
-    //     playQueue: filteredSound.urls
-    //   };
-    //   newChannels.push(newChannel);
-    // });
-    // this.setState({
-    //   name: name,
-    //   slug: slug,
-    //   creator_id: creator_id,
-    //   color_scheme: color_scheme,
-    //   is_public: is_public,
-    //   likes: likes,
-    //   channels: newChannels
-    // });
-    // engine.loadAllHowls(newChannels);
+   //Handle Background Sounds to be used for updating a new background sound.
   };
 
   handleAdder = () => {
@@ -136,7 +108,6 @@ export default class SingleScenario extends Component {
   };
 
   muteSolo = (url, bool) => {
-    console.log(bool);
     const { channels } = this.state;
     channels.forEach(channel => {
       if (channel.slug === url && channel.type === "background") {
@@ -159,7 +130,6 @@ export default class SingleScenario extends Component {
 
   changeVolume = (slug, value) => {
     const { channels } = this.state;
-    console.log("change volume");
     const thisChannel = channels.filter(channel => {
       return channel.slug === slug;
     })[0];
@@ -176,7 +146,6 @@ export default class SingleScenario extends Component {
     engine.changeVolumeOfHowl(slug, value);
   };
   changeFrequency = (slug, value) => {
-    console.log(value, slug);
     const { channels } = this.state;
     const thisChannel = channels.filter(channel => {
       return channel.slug === slug;
@@ -195,7 +164,6 @@ export default class SingleScenario extends Component {
 
   render() {
     const { channels, playing, highlightedChannel, soloChannel } = this.state;
-    // console.log(channels);
     return (
       <View style={styles.outerView}>
         <ScrollView
@@ -213,10 +181,8 @@ export default class SingleScenario extends Component {
               style={{
                 height: "100%",
                 width: "100%",
-                // position: "relative",
                 top: 0,
                 left: 0,
-                // justifyContent: "center"
                 alignItems: "center"
               }}
             >

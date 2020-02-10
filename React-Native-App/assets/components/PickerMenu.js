@@ -25,14 +25,6 @@ export default class PickerMenu extends Component {
     const { soundsIndex } = this.state;
     return (
       <>
-        {/* <Header /> */}
-        {/* <View style={styles.outerBox}>
-          <TouchableOpacity style={styles.innerBox} onPress={this.Handlepress}>
-            <Text style={styles.headText}>Play/Pause</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.innerBox} onPress={this.Handlestop}>
-            <Text style={styles.headText}>Stop</Text>
-          </TouchableOpacity> */}
         <View style={styles.picker}>
           <Picker
             mode="dropdown"
@@ -52,32 +44,10 @@ export default class PickerMenu extends Component {
             })}
           </Picker>
         </View>
-
-        {/* <View style={styles.innerBox}>
-            <Text>Volume</Text>
-            <Slider
-              style={{ width: "60%" }}
-              value={this.state.volume}
-              onValueChange={volume => this.setState({ volume })}
-            />
-          </View>
-
-          <View style={styles.innerBox}>
-            <Text>Freq</Text>
-            <Slider
-              minimumValue={8000}
-              maximumValue={40000}
-              style={{ width: "60%" }}
-              value={this.state.frequency}
-              onValueChange={frequency => this.setState({ frequency })}
-            />
-          </View> */}
-        {/* </View> */}
       </>
     );
   }
   componentDidMount() {
-    // console.log(backgroundData);
     this.setState({
       soundsIndex: Object.keys(backgroundData),
       selectedBGS: Object.keys(Object.keys(backgroundData)[0])
