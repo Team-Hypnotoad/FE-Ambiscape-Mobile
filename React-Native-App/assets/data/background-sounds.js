@@ -65,11 +65,11 @@ const backgroundSounds = [
   },
   {
     id: 509,
-    name: "",
-    slug: "",
+    name: "Hypnotoad",
+    slug: "hypnotoad",
     type: "background",
     loop: true,
-    urls: [""]
+    urls: ["hypnotoad"]
   },
   {
     id: 510,

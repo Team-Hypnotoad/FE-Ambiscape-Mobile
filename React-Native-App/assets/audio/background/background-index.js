@@ -21,6 +21,7 @@ import summerambience from "./summer-ambience.mp3";
 import terrordarkplace from './terrordarkplace.mp3';
 import watertubes from "./watertubes.mp3"
 import evil from "./evil.mp3";
+import hypnotoad from "./hypnotoad.mp3"
 
 const backgroundData = {
   campfire: {
@@ -91,6 +92,9 @@ const backgroundData = {
   },
   evil: {
     evil: evil
+  },
+  hypnotoad: {
+    hypnotoad
   }
 };
 

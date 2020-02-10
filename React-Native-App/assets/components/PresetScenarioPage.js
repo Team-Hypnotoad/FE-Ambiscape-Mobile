@@ -54,13 +54,13 @@ export default class CustomScenarioCard extends Component {
         slug: "rainstorm"
         // image: require("../image/IMG_7115.jpeg")
       },
-      { 
-        name: "Dungeon",
-        slug: "dungeon" 
-      },
       {
         name: "Dungeon",
         slug: "dungeon"
+      },
+      {
+        name: "Hypno Hell",
+        slug: "hypnotoad"
       }
     ],
     isLoading: false

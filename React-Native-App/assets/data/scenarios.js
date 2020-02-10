@@ -414,8 +414,7 @@ const scenarios = [
         id: 589,
         slug: "watertubes",
         volume: 0.4,
-        pan: 0,
-        frequency: 0.17
+        pan: 0
       },
       {
         id: 20,
@@ -423,6 +422,48 @@ const scenarios = [
         volume: 0.15,
         pan: 0.39,
         frequency: 0.16
+      },
+      {
+        id: 99,
+        slug: "monster",
+        volume: 0.5,
+        pan: 0.39,
+        frequency: 0.16
+      }
+    ]
+  },
+  {
+    name: "Hypno Hell",
+    slug: "hypnotoad",
+    creator_id: 0,
+    color_scheme: [],
+    is_public: true,
+    likes: 0,
+    sounds: [
+      {
+        id: 501,
+        slug: "campfire",
+        volume: 0.7,
+        pan: -0.66
+      },
+      {
+        id: 502,
+        slug: "chimes",
+        volume: 0.6,
+        pan: 0.42
+      },
+      {
+        id: 509,
+        slug: "hypnotoad",
+        volume: 0.2,
+        pan: 0
+      },
+      {
+        id: 17,
+        slug: "thunder",
+        volume: 0.5,
+        pan: 0.39,
+        frequency: 0.5
       },
       {
         id: 99,
